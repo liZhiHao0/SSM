@@ -63,4 +63,20 @@ public class UserServiceImpl implements IUserService {
     public UserInfo findById(String id) throws Exception {
         return userDao.findById(id);
     }
+
+
+    @Override
+    //查询未拥有的角色
+    public List<Role> findOtherRoles(String userId) {
+        return userDao.findOtherRoles(userId);
+    }
+
+    @Override
+    //添加角色
+    public void addRoleToUser(String userId, String[] roleIds) {
+        for(String roleId:roleIds){
+            userDao.addRoleToUser(userId,roleId);
+        }
+    }
+
 }

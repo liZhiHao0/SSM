@@ -1,6 +1,7 @@
 package com.itheima.ssm.dao;
 
 import com.itheima.ssm.domain.Permission;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
@@ -15,5 +16,13 @@ public interface IPermissionDao {
 
     @Insert("insert into permission(permissionName,url) values(#{permissionName},#{url})")
     void save(Permission permission) ;
+
+    @Delete("delete from permission where id=#{id}")
+    void deleteById(String id);
+    @Delete("delete from role_permission where permissionId=#{id}")
+    void deleteFromRole_Permission(String id);
+
+    @Select("select * from permission where id=#{id}")
+    Permission findById(String id);
 
 }
